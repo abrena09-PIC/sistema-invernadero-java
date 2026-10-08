@@ -32,3 +32,46 @@ es baja y en humedad del suelo es adecuada, or eso creo
 que aquí sirve la herencia, para tener una parte que sea
 igual en todos los sensores y otra que cambie en cada uno.
 
+--------
+## 2. Identificación de objetos
+
+Los objetos que identifiqué son estos:
+
+- sensor: es la base para el sensor, es necesario porque todos los sensores
+  del invernadero comparten datos (id, ubicación, si está activo
+, última medición) y no es eficiente repetirlos
+tres veces, en pocas palabras guarda información en común
+
+
+- sensorTemperatura: Es el sensor que mide la temperatura del aire 
+en grados centigrados es necesario porque interpreta la medición con 
+base en sus rengos propios, su función es decir si la
+temperatura es baja, adecuada o alta.
+
+
+- sensorHumedad. Mide la humedad ambiental en un porcentaje %
+
+
+- SensorHumedadSuelo. Mide la humedad del suelo en un porcentaje %
+y puede decir si hace
+  falta regar.
+
+
+- SistemaRiego. No mide nada,  solo está activo o inactivo y se puede prender o apagar, 
+su función es controlar el riego.
+
+
+---------
+
+# 3. Estado y comportamiento
+
+| Objeto | Función                                          | Información del objeto| Comportamiento                                                                                                             |
+|---|--------------------------------------------------|------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------|
+| Sensor | Guardar los datos en común de todos los sensores | id<br>ubicación<br>si está activo<br>última medición | puede activarse y desactivarse<br>puede guardar una medición<br>puede consultar sus datos<br>puede interpretar su medición |
+| SensorTemperatura | Interpretar mediciones de temperatura            | Lo mismo que Sensor                                  | Interpretar su medición con los rangos de temperatura<br>puede convertir su medición a Fahrenheit                          |
+| SensorHumedad | Interpretar mediciones de humedad ambiental      | Lo mismo que Sensor                                  | Interpretar su medición con los rangos de humedad ambiental                                                                |
+| SensorHumedadSuelo | Interpretar mediciones de humedad del suelo      | Lo mismo que Sensor                                  | Interpretar su medición con los rangos del suelo<br>pude saber si hace falta regar                                         |
+| SistemaRiego | Controlar si se está regando o no                | Si está activo o no                                  | puede activarse<br>puede desactivarse<br>puede consultar su estado                                                         |
+
+-------
+
