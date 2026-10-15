@@ -134,3 +134,39 @@ pongo como subclase heredaría cosas que no necesita como la última medición o
 
 ---------------------
 
+# 6. Diseño de clases
+
+| Clase | Atributos propuestos | Tipo de dato                          | Métodos propuestos                                                                                                               | Responsabilidad                                        |
+|---|---|---------------------------------------|----------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------|
+| Sensor | id<br>ubicacion<br>activo<br>ultimaMedicion | String<br>String<br>boolean<br>double | getId()<br>getUbicacion()<br>isActivo()<br>getUltimaMedicion()<br>activar()<br>desactivar()<br>medir(valor)<br>evaluarMedicion() | Guardar los datos comunes de cualquier sensor          |
+| SensorTemperatura | (los hereda de Sensor) |                                       | evaluarMedicion()<br>convertirAFahrenheit()                                                                                      | Interpretar temperaturas                               |
+| SensorHumedad | (los hereda de Sensor) |                                       | evaluarMedicion()                                                                                                                | Interpretar humedad ambiental                          |
+| SensorHumedadSuelo | (los hereda de Sensor) |                                       | evaluarMedicion()<br>requiereRiego()                                                                                             | Interpretar humedad del suelo y decir si hay que regar |
+| SistemaRiego | activo | boolean                               | activar()<br>desactivar()<br>estaActivo()                                                                                        | Controlar el riego                                     |
+
+sensor: el constructor recibe el id y la ubicación, el atributo activo empieza en true y ultimaMedicion en 0
+, los gets regresan String, String,
+medir(valor) guarda la medición y evaluarMedicion() regresa un
+texto
+
+sensorTemperatura, sensorHumedad y sensorHumedadSuelo: cada una tiene un constructor con id y ubicación
+que llama a sensor(id, ubicacion) y no vuelve a declarar los atributos, evaluarMedicion() regresa String,
+convertirAFahrenheit() regresa double y requiereRiego() regresa booleano (true si la humedad está baja)
+
+sistemaRiego: el constructor no recibe nada y empieza con el estado de activo en false, estaActivo()
+regresa valores booleanos y revisarSuelo(sensor) recibe un SensorHumedadSuelo y activa o desactiva
+el riego dependiendo lo que le diga el sensor
+----
+## 7. Jerarquía de clases
+
+la clase principal  es Sensor y de ahí se heredan tres subclases: SensorTemperatura,
+SensorHumedad y SensorHumedadSuelo, las tres son un tipo de sensor y reciben
+de Sensor el id, la ubicación, el estado y la última medición.
+
+SistemaRiego queda fuera de la jerarquía porque no hereda nada, es una clase
+aparte que solo usa la información del sensor de humedad del suelo.
+
+------
+## 8. UML inicila
+
+![Diagrama UML inicial](UML_inicial.png)
