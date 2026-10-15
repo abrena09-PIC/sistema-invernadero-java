@@ -75,3 +75,62 @@ su función es controlar el riego.
 
 -------
 
+# 4. Características comunes y especialización
+
+
+
+
+comparando los tres sensores del documento de contexto las respuestas son:
+
+¿qué información tienen en común? el id, la ubicación, si están activos o inactivos y la última medición
+
+
+¿qué comportamientos tienen en común? activarse o desactivarse, guardar una medición, consultar sus datos y también interpretar la medición
+
+
+¿qué cambia según el tipo de sensor? la unidad (°C o %) y los rangos del número
+
+¿existe un concepto general para todos? si, es el sensor sin contemplar que mide
+
+¿qué serían las especializaciones? el sensor de temperatura, el de humedad ambiental y el de humedad del suelo
+
+| Sensor | Baja | Adecuada | Alta |
+|---|---|---|---|
+| Temperatura | menor a 18 | de 18 a 30 | mayor a 30 |
+| Humedad ambiental | menor a 40 | de 40 a 70 | mayor a 70 |
+| Humedad del suelo | menor a 30 | de 30 a 70 | mayor a 70 |
+
+Todos interpretan su medición, pero cada uno lo hace distinto. Entonces el comportamiento existe en todos y la
+forma de hacerlo cambia en cada subclase.
+
+---
+
+# 5. Relaciones entre objetos
+
+separé las relaciones en dos tipos:
+
+(herenciia):
+
+un SensorTemperatura es un Sensor
+
+un SensorHumedad es un Sensor
+
+un SensorHumedadSuelo es un Sensor
+
+(sin herencia):
+
+el sistema de riego usa la información del sensor de humedad
+del suelo para saber si se tiene que activar, necesita saber si la humedad
+está baja y eso se lo da el sensor
+
+No se deben de duplicar los datos comunes de los sensores van solo en sensor  y el sistema 
+de riego no guarda su propia copia de la humedad del suelo, se la pide al sensor cuando la necesita.
+
+¿por qué SistemaRiego no debería ser una subclase de Sensor? porque no cumple con la herencia,
+un sistema de riego no es un sensor ya queno mide nada y no tiene una medición que interpretar
+, el sensor solo observa y el riego hace la acción, tienen responsabilidades diferente, si lo
+pongo como subclase heredaría cosas que no necesita como la última medición o evaluarMedicion() y no tendría sentido.
+
+
+---------------------
+
