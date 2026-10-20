@@ -97,8 +97,8 @@ comparando los tres sensores del documento de contexto las respuestas son:
 | Sensor | Baja | Adecuada | Alta |
 |---|---|---|---|
 | Temperatura | menor a 18 | de 18 a 30 | mayor a 30 |
-| Humedad ambiental | menor a 40 | de 40 a 70 | mayor a 70 |
-| Humedad del suelo | menor a 30 | de 30 a 70 | mayor a 70 |
+| Humedad ambiental |menor a 40 |de 40 a 70 | mayor a 70 |
+| Humedad del suelo |menor a 30 |de 30 a 70 | mayor a 70 |
 
 Todos interpretan su medición, pero cada uno lo hace distinto. Entonces el comportamiento existe en todos y la
 forma de hacerlo cambia en cada subclase.
@@ -167,6 +167,6 @@ SistemaRiego queda fuera de la jerarquía porque no hereda nada, es una clase
 aparte que solo usa la información del sensor de humedad del suelo.
 
 ------
-## 8. UML inicila
+## 8. UML inial
 
 ![Diagrama UML inicial](UML_inicial.png)
