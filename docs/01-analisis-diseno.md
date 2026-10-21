@@ -218,4 +218,30 @@ aparte que solo usa la información del sensor de humedad del suelo.
 4. ¿Cómo decide Java cuál usar? Lo decide mientras el programa corre viendo cual es la clase del objeto realmente
 5. ¿Dónde se observa el polimorfismo? En el for de Main que recorre el arreglo Sensor, es el mismo código
    para los tres sensores y cada uno responde distinto.
-6. ¿Dónde se observa el enlace dinámico? En esa misma línea de sensor.evaluarMedicion()x
+6. ¿Dónde se observa el enlace dinámico? En esa misma línea de sensor.evaluarMedicion()x4
+
+---
+
+# 13. instanceof y casting
+
+El comportamiento que solo existe en la subclase es convertirAFahrenheit(), 
+de SensorTemperatura y requiereRiego() de SensorHumedadSuelo)
+
+1. ¿Por qué fue necesario el casting? Porque con una variable de tipo Sensor solo puedo usar lo que Sensor
+   tiene, probé escribir sensor.convertirAFahrenheit() y no compila
+2. ¿Qué comprueba instanceof? Si el objeto al que apunta la variable es realmente de ese tipo.
+3. ¿Qué pasaría con una subclase incorrecta? El programa compila pero se cae al ejecutar con un
+   ClassCastexceptionf.
+4. ¿Por qué no usar instanceof en lugar del polimorfismo? Porque tendría que hacer un if para cada tipo de
+   sensor y al agregar un sensor nuevo tendría que modificar todos esos if.
+
+---
+
+# 14. Sistema de riego
+
+¿El sistema de riego "es un" sensor o utiliza información de los sensores? Utiliza información, en el
+código SistemaRiego no hereda de sensor, tiene el método revisarSuelo(SensorHumedadSuelo sensor) que
+recibe el sensor como parámetro le pregunta requiereRiego() y con base en esto eso activa o desactiva el riego,
+
+En Main se prueban dos casos 1.con el suelo en 22 el riego queda activo, y con el suelo en 51 queda
+inactivo.
