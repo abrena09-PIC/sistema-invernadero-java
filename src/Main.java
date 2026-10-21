@@ -40,5 +40,39 @@ public class Main {
                     }
         }
 
+        System.out.println();
+
+        SistemaRiego riego = new SistemaRiego();
+
+        revisarRiego(sensores, riego);
+
+                System.out.println("Humedad del suelo: " + sensores[2].getUltimaMedicion());
+
+                System.out.println("Riego activo: " + riego.estaActivo());
+
+                System.out.println();
+
+        sensores[2].medir(51);
+
+
+        revisarRiego(sensores, riego);
+
+
+        System.out.println("Humedad del suelo: " + sensores[2].getUltimaMedicion());
+        System.out.println("Riego activo: " + riego.estaActivo());
     }
-}
+
+    public static void revisarRiego(Sensor[] sensores, SistemaRiego riego) {
+        for (Sensor sensor : sensores) {
+
+
+            if (sensor instanceof SensorHumedadSuelo) {
+
+
+                SensorHumedadSuelo suelo = (SensorHumedadSuelo) sensor;
+                riego.revisarSuelo(suelo);
+            }
+        }
+    }
+
+    }
