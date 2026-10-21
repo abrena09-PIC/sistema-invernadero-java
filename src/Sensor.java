@@ -65,5 +65,10 @@ public class Sensor {
         System.out.println("ultima medicion: "+ ultimaMedicion);
 
 
+
+    }
+
+    public String evaluarMedicion() {
+        return "no hay medición";
     }
 }

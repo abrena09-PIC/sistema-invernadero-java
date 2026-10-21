@@ -170,3 +170,30 @@ aparte que solo usa la información del sensor de humedad del suelo.
 ## 8. UML inial
 
 ![Diagrama UML inicial](UML_inicial.png)
+
+
+---
+
+# 10. Constructores y super
+
+1. ¿Los constructores de la superclase se heredan? No. Una subclase no hereda los constructores por eso
+   cada subclase tiene el suyo y dentro llama al de Sensor con super(id, ubicacion)
+2. Cuando creo un objeto de una subclase, ¿qué constructor se ejecuta primero? El de la superclase lo
+   comprobé en el serial al crear un SensorTemperatura sale primero "ejecutando el constructor de Sensor"
+   y después "ejecutando el constructor de SensorTemperatura"
+3. ¿Para qué usé super(...)? Para pasarle el id y la ubicación al constructor de Sensor, que es el que
+   guarda esos datos
+
+---
+
+# 11. Sobrescritura
+
+1. ¿Qué método sobrescribí? evaluarMedicion() y está en Sensor 
+
+2. ¿Qué indica @Override? Que ese método reemplaza uno de la superclase
+
+3. ¿Por qué usé el mismo nombre en las subclases? Porque los tres sensores hacen lo mismo en general
+   pero con condiciones distintas
+
+4. ¿Qué ventaja tiene frente a un método distinto para cada tipo? Si tuviera evaluarTemperatura()
+   evaluarHumedad() y evaluarSuelo(), tendría que saber de qué tipo es cada objeto para llamar al correcto
