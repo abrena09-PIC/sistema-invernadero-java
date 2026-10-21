@@ -62,7 +62,7 @@ public class Sensor {
     public void mostrarInformacion() {
         System.out.println("sensor " + id + " en " + ubicacion);
         System.out.println("activo: " + activo);
-        System.out.println("ultima medicion: ");
+        System.out.println("ultima medicion: "+ ultimaMedicion);
 
 
     }
