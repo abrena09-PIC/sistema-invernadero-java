@@ -197,3 +197,25 @@ aparte que solo usa la información del sensor de humedad del suelo.
 
 4. ¿Qué ventaja tiene frente a un método distinto para cada tipo? Si tuviera evaluarTemperatura()
    evaluarHumedad() y evaluarSuelo(), tendría que saber de qué tipo es cada objeto para llamar al correcto
+
+
+---
+
+# 12. Polimorfismo y enlace dinámico
+
+| Tipo de referencia | Tipo real del objeto | Método que se ejecuta                                                        |
+|---|---------------|------------------------------------------------------------------------------|
+| Sensor | SensorTemperatura | evaluarMedicion() de SensorTemperatura (con 32 da "temperatura alta")        |
+| Sensor | SensorHumedad | evaluarMedicion() de SensorHumedad (con 55 da humedad ambiental adecuada")   |
+| Sensor |SensorHumedadSuelo| evaluarMedicion() de SensorHumedadSuelo (con 22 da "humedad del suelo baja") |
+
+1. ¿Por qué una referencia de tipo Sensor puede apuntar a un objeto SensorTemperatura? Porque un
+   SensorTemperatura es un Sensor de herencia entonces cabe en una variable de ese tipo.
+2. ¿Puede una referencia SensorTemperatura apuntar a cualquier objeto Sensor? No porque un Sensor cualquiera
+   podría ser un SensorHumedad, que no tiene convertirAFahrenheit()
+3. Cuando ejecuto sensor.evaluarMedicion(), ¿qué versión se ejecuta? La del tipo real del objeto no la del
+   tipo de la variable.
+4. ¿Cómo decide Java cuál usar? Lo decide mientras el programa corre viendo cual es la clase del objeto realmente
+5. ¿Dónde se observa el polimorfismo? En el for de Main que recorre el arreglo Sensor, es el mismo código
+   para los tres sensores y cada uno responde distinto.
+6. ¿Dónde se observa el enlace dinámico? En esa misma línea de sensor.evaluarMedicion()x

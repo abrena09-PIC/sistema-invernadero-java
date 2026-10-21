@@ -1,21 +1,35 @@
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println("Sistema de invernadero inteligente");
+        System.out.println("***SISTEMA DE INVERNADERO INTELIGENTE***");
         System.out.println();
 
-        SensorTemperatura temperatura = new SensorTemperatura("ST-01", "zona norte");
-        SensorHumedad humedad = new SensorHumedad("SH-01", "zona central");
-        SensorHumedadSuelo suelo = new SensorHumedadSuelo("SS-01", "zona sur");
+        Sensor[] sensores = new Sensor[3];
+        sensores[0] = new SensorTemperatura("ST-01", "zona norte");
+        sensores[1] = new SensorHumedad("SH-01", "zona central");
+        sensores[2] = new SensorHumedadSuelo("SS-01", "zona sur");
+
         System.out.println();
 
-        temperatura.medir(32);
-        humedad.medir(55);
-        suelo.medir(22);
 
-        System.out.println(temperatura.evaluarMedicion());
-        System.out.println(humedad.evaluarMedicion());
-        System.out.println(suelo.evaluarMedicion());
+        sensores[0].medir(32);
+
+        sensores[1].medir(55);
+
+        sensores[2].medir(22);
+
+        for (Sensor sensor : sensores) {
+
+
+            sensor.mostrarInformacion();
+            System.out.println("tipo real del objeto: " + sensor.getClass().getSimpleName());
+
+            System.out.println("tnterpretacion: " + sensor.evaluarMedicion());
+
+            System.out.println();
+
+
+        }
+
     }
-
 }
