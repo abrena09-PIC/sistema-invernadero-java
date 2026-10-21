@@ -31,5 +31,14 @@ public class Main {
 
         }
 
+        for (Sensor sensor : sensores) {
+
+                    if (sensor instanceof SensorTemperatura) {
+
+                    SensorTemperatura temperatura = (SensorTemperatura) sensor;
+                    System.out.println("temperatura en Fahrenheit: " + temperatura.convertirAFahrenheit());
+                    }
+        }
+
     }
 }
