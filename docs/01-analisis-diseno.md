@@ -245,3 +245,45 @@ recibe el sensor como parámetro le pregunta requiereRiego() y con base en esto 
 
 En Main se prueban dos casos 1.con el suelo en 22 el riego queda activo, y con el suelo en 51 queda
 inactivo.
+
+---
+
+# 15. Pruebas realizadas
+
+Las pruebas las hice con la clase Pruebas.java, que preubaa cada caso
+y compara el resultado con el esperado.
+
+| Caso | Resultado esperado                              | Resultado obtenido                                                                     |
+|---|-------------------------------------------------|----------------------------------------------------------------------------------------|
+|Crear los diferentes sensores | Los objetos conservan su estado                 |Se crearon con su id y ubicación, activos, y después de medir() guardan la medición     |
+|Temperatura de 15, 18, 25, 30 y 34| Baja, adecuada, adecuada, adecuada y alta       |Temperatura baja, adecuada, adecuada, adecuada y alta                                   |
+|Humedad ambiental de 32, 40, 55, 70 y 82| Baja, adecuada, adecuada, adecuada y alta       |Humedad ambiental baja, adecuada, adecuada, adecuada y alta                             |
+|Humedad del suelo de 18, 30, 48, 70 y 83 | Baja, adecuada, adecuada, adecuada y alta       |Humedad del suelo baja, adecuada, adecuada, adecuada y alta                             |
+|Procesar distintos sensores mediante referencias Sensor | ada objeto ejecuta su propia implementación     |Con 32, 55 y 22 salieron Temperatura alta, Humedad ambiental adecuada y Humedad del suelo baja |
+|Recorrer la colección de sensores | Todos se procesan con el tipo común             |Un solo for procesó los tres sensores del arreglo Sensor[]                              |
+|Comprobar un objeto con instanceof | Se identifica su tipo                           |ST-01 dio true para SensorTemperatura; SH-01 y SS-01 dieron false                       |
+|Casting después de comprobar el tipo| Se puede usar el comportamiento específico      |25 grados dieron 77.0 °F y 32 grados dieron 89.6 °F con convertirAFahrenheit()          |
+|Humedad del suelo baja | El riego se activa                              |Con 22 el riego quedó activo                                                            |
+|Humedad del suelo adecuada o alta| El riego queda inactivo                         |Con 51 y con 83 el riego quedó inactivo                                                 |
+|Sensor desactivado (prueba extra)| No guarda mediciones                            |Con el sensor desactivado, medir(40) no cambió la última medición (siguió en 25.0)      |
+
+---
+
+# 16. Cambios realizados al diseño
+
+La herencia quedó igual que en el UML inicial, Sensor como superclase y las tres subclases, los cambios al
+programar fueron pequeños
+
+1. Agregué mostrarInformacion() en Sensor para imprimir los datos de un sensor sin repetir los println
+   en Main cada vez
+2. Agregué revisarSuelo(sensor) en SistemaRiego, en el UML inicial tenía la flecha "usa" entre SistemaRiego
+   y SensorHumedadSuelo pero no había ningún método que hiciera eso
+3. medir() ahora solo guarda la medición si el sensor está activo no cambia su nombre ni sus parámetros
+
+También puse un println en cada constructor para poder comprobar el orden en que se ejecutan
+
+---
+
+# 17. Diagrama UML final
+
+![Diagrama UML final](uml-final.png)
